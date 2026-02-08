@@ -25,11 +25,19 @@ class VibeAuditService {
   protected $state;
 
   /**
+   * The app root.
+   *
+   * @var string
+   */
+  protected $appRoot;
+
+  /**
    * Constructs a VibeAuditService object.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, StateInterface $state) {
+  public function __construct(ConfigFactoryInterface $config_factory, StateInterface $state, string $app_root) {
     $this->configFactory = $config_factory;
     $this->state = $state;
+    $this->appRoot = $app_root;
   }
 
   /**
@@ -51,7 +59,7 @@ class VibeAuditService {
   protected function checkConfigForSecrets(): array {
     $findings = [];
     $config_names = $this->configFactory->listAll();
-    
+
     // Patterns for common AI API keys.
     $patterns = [
       'openai' => '/sk-[a-zA-Z0-9]{32,}/',
@@ -95,11 +103,10 @@ class VibeAuditService {
    */
   protected function checkPublicFiles(): array {
     $findings = [];
-    $root = \Drupal::root();
     $dangerous_files = ['.env', '.git', 'composer.lock.bak', 'web.config.bak'];
-    
+
     foreach ($dangerous_files as $file) {
-      if (file_exists($root . '/' . $file)) {
+      if (file_exists($this->appRoot . '/' . $file)) {
         $findings[] = [
           'type' => 'dangerous_file',
           'severity' => 'high',
