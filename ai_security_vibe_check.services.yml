@@ -1,0 +1,4 @@
+services:
+  ai_security_vibe_check.audit:
+    class: Drupal\ai_security_vibe_check\VibeAuditService
+    arguments: ['@config.factory', '@state']

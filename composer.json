@@ -1,0 +1,23 @@
+{
+    "name": "victorstack-ai/drupal-ai-security-vibe-check",
+    "description": "Audits Drupal site for AI-related security risks inspired by the Moltbook exposure.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.1",
+        "drupal/core": "^10 || ^11"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5 || ^10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\ai_security_vibe_check\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "drupal/core-composer-scaffold": true
+        }
+    }
+}

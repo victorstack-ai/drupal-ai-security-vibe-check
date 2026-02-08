@@ -1,0 +1,7 @@
+name: 'AI Security Vibe Check'
+type: module
+description: 'Audits Drupal site for AI-related security risks inspired by the Moltbook exposure.'
+package: AI
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:system

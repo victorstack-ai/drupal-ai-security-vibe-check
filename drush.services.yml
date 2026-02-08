@@ -1,0 +1,6 @@
+services:
+  ai_security_vibe_check.commands:
+    class: Drupal\ai_security_vibe_check\Commands\VibeCheckCommands
+    arguments: ['@ai_security_vibe_check.audit']
+    tags:
+      - { name: drush.command }
